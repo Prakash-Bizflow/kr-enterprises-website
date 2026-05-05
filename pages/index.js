@@ -33,12 +33,12 @@ const WHY = [
   {
     icon: "🎯",
     title: "99% On-Time Delivery",
-    body: "India's most demanding steel manufacturers plan their production schedules around our supply commitments. Four decades of reliability — not a claim, a track record."
+    body: "Our clients at TATA Steel, Jindal and JSW plan their production schedules around our commitments. Four decades of on-time supply — not a claim, a track record that speaks for itself."
   },
   {
     icon: "⚖️",
     title: "Precision Grading & Cutting",
-    body: "Every lot quality-checked, sorted grade-wise and cut to buyer specification at our facility. Foundry-ready material — zero rework, zero rejections at your end."
+    body: "Every lot is quality-checked, sorted grade-wise and cut to exact buyer specification. Foundry-ready material reaches you with zero rework and zero rejections."
   },
   {
     icon: "🔗",
@@ -47,8 +47,28 @@ const WHY = [
   },
   {
     icon: "📦",
-    title: "100 MT – 2000 MT Per Order",
-    body: "Single orders from 100 MT to 2000 MT — serving mid-size foundries and large integrated steel mills with the same level of commitment and documentation."
+    title: "100 MT – 2000 MT. One Order.",
+    body: "From a 100 MT spot requirement to a 2000 MT bulk contract — we handle it all under one roof. Same quality, same documentation, same commitment regardless of order size."
+  },
+  {
+    icon: "🏗️",
+    title: "In-House Baling Facility",
+    body: "We bail CR/HR scrap at our own yard to exact foundry specification — right density, right dimension, right grade. Material reaches you charge-ready, with zero processing required at your end."
+  },
+  {
+    icon: "🚛",
+    title: "Own Fleet for Supply & Procurement",
+    body: "Our dedicated transport fleet handles both local procurement and last-mile delivery. No third-party dependency — material moves on our timeline, predictable and on schedule."
+  },
+  {
+    icon: "💰",
+    title: "Strong Financial Backing",
+    body: "Backed by solid financials, we procure and hold large volumes without breaking the supply chain. When buyers need 500 MT, 1000 MT or more — we have the capital to deliver."
+  },
+  {
+    icon: "⚡",
+    title: "Ready Inventory. Rapid Supply.",
+    body: "We maintain ready stock of key grades at our yard at all times. When your requirement is urgent, we are not starting from zero — quick turnaround on spot orders is how we operate."
   },
 ];
 
@@ -67,12 +87,15 @@ const ENV_POINTS = [
 ];
 
 const PROCESS = [
-  { num: "01", title: "Sourcing", desc: "Direct procurement from TATA Steel, Jindal, JSW and major plant generators. PAN India supplier network." },
-  { num: "02", title: "Quality Check", desc: "On-site inspection at receipt. Every lot verified before entering our yard — no shortcuts." },
-  { num: "03", title: "Sorting & Cutting", desc: "Grade-wise sorting, cut to exact buyer specification. Foundry-ready preparation at our facility." },
-  { num: "04", title: "Storage", desc: "Dedicated material-wise yard sections — proper segregation prevents grade mixing." },
-  { num: "05", title: "Documentation", desc: "Weighment slip, quality cert, GST invoice and e-way bill — complete, every shipment." },
-  { num: "06", title: "Dispatch", desc: "On-time delivery to buyer's gate. 99% delivery record maintained over 40+ years." },
+  { num: "01", title: "Sourcing & Procurement", desc: "Direct procurement from TATA Steel, Jindal, JSW and major plant generators across PAN India." },
+  { num: "02", title: "Supplier Verification", desc: "Every source assessed for material consistency before onboarding. We work only with verified, trusted generators." },
+  { num: "03", title: "Quality Inspection", desc: "On-site inspection at receipt. Every lot verified before entering our yard — no shortcuts, no compromises." },
+  { num: "04", title: "Weighbridge", desc: "Accurate weighbridge measurement at receipt and dispatch. Full transparency on weight — no disputes later." },
+  { num: "05", title: "Sorting & Grading", desc: "Grade-wise sorting at our facility. Each grade segregated to prevent mixing and maintain consistency." },
+  { num: "06", title: "Baling & Cutting", desc: "CR/HR scrap baled in-house to exact foundry density and dimension. Cut to buyer specification — charge-ready." },
+  { num: "07", title: "Yard Storage", desc: "Dedicated material-wise yard sections. Proper segregation and inventory tracking at all times." },
+  { num: "08", title: "Documentation", desc: "Weighment slip, quality cert, GST invoice and e-way bill — complete documentation for every shipment." },
+  { num: "09", title: "Dispatch & Delivery", desc: "On-time delivery via our own fleet. Proof of delivery shared immediately — 99% on-time over 40+ years." },
 ];
 
 const C = {
@@ -209,12 +232,13 @@ export default function App() {
                 Four decades of building a reputation that India's largest steel producers rely on — every month, every shipment, without exception.
               </p>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 2, maxWidth: 1100, margin: "0 auto", border: `1px solid ${C.borderGold}`, borderRadius: 20, overflow: "hidden" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 2, maxWidth: 1100, margin: "0 auto", border: `1px solid ${C.borderGold}`, borderRadius: 20, overflow: "hidden" }}>
               {WHY.map((w, i) => (
                 <div key={i} style={{
                   padding: "40px 32px",
                   background: i % 2 === 0 ? C.navySurface : C.navyMid,
-                  borderRight: i < 3 ? `1px solid ${C.borderGold}` : "none",
+                  borderRight: ((i + 1) % 4 !== 0) ? `1px solid ${C.borderGold}` : "none",
+                  borderBottom: i < 4 ? `1px solid ${C.borderGold}` : "none",
                   transition: "all 0.2s", cursor: "default"
                 }}
                   onMouseEnter={e => { e.currentTarget.style.background = C.navyLight; }}
@@ -271,7 +295,7 @@ export default function App() {
               <Tag label="How We Work" />
               <h2 style={{ fontSize: 34, fontWeight: 900, margin: "14px 0 0", color: C.white }}>From Procurement to Dispatch</h2>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 1, maxWidth: 1100, margin: "0 auto", background: C.borderGold, borderRadius: 16, overflow: "hidden", border: `1px solid ${C.borderGold}` }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, maxWidth: 1100, margin: "0 auto", background: C.borderGold, borderRadius: 16, overflow: "hidden", border: `1px solid ${C.borderGold}` }}>
               {PROCESS.map((p, i) => (
                 <div key={i} style={{ background: i % 2 === 0 ? C.navySurface : C.navyMid, padding: "28px 22px" }}>
                   <div style={{ width: 36, height: 36, borderRadius: 8, background: C.goldDim, border: `1px solid ${C.goldBorder}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, color: C.gold, marginBottom: 14 }}>{p.num}</div>
