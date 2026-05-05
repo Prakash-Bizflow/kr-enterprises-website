@@ -141,11 +141,13 @@ export default function App() {
     setSubmitting(true);
     setSubmitError("");
     try {
-      const res = await fetch("https://formsubmit.co/ajax/quotes@kregroup.co.in", {
+      const res = await fetch("https://formsubmit.co/ajax/finance@kregroup.co.in", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
-          _subject: "New Quote Request from K R Enterprises Website",
+          _subject: "New Quote Request - K R Enterprises Website",
+          _cc: "quotes@kregroup.co.in",
+          _template: "table",
           Name: form.name,
           Company: form.company,
           Phone: form.phone,
