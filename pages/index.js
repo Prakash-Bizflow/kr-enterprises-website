@@ -130,6 +130,42 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [form, setForm] = useState({ name: "", company: "", phone: "", email: "", material: "", qty: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.phone || !form.email) {
+      setSubmitError("Please fill Name, Phone and Email");
+      return;
+    }
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/quotes@kregroup.co.in", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          _subject: "New Quote Request from K R Enterprises Website",
+          Name: form.name,
+          Company: form.company,
+          Phone: form.phone,
+          Email: form.email,
+          Material: form.material,
+          Quantity_MT: form.qty,
+        })
+      });
+      const data = await res.json();
+      if (data.success === "true" || data.success === true) {
+        setSubmitted(true);
+      } else {
+        setSubmitError("Could not send. Please try again or email us directly.");
+      }
+    } catch (e) {
+      setSubmitError("Network error. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 60);
@@ -516,13 +552,13 @@ export default function App() {
                   <div style={{ width: 64, height: 64, borderRadius: "50%", background: `linear-gradient(135deg,${C.gold},${C.goldHover})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 26, margin: "0 auto 20px", fontWeight: 900, color: C.navy }}>✓</div>
                   <div style={{ fontSize: 26, fontWeight: 900, marginBottom: 8, color: C.white }}>Enquiry Received!</div>
                   <div style={{ color: C.muted, fontSize: 15, marginBottom: 6 }}>Our team will contact you within 4 business hours.</div>
-                  <div style={{ color: C.muted, fontSize: 13, marginBottom: 28 }}>Sent to <strong style={{ color: C.text }}>CRM@kregroup.co.in</strong></div>
+                  <div style={{ color: C.muted, fontSize: 13, marginBottom: 28 }}>Sent to <strong style={{ color: C.text }}>quotes@kregroup.co.in</strong></div>
                   <button onClick={() => { setSubmitted(false); setForm({ name: "", company: "", phone: "", email: "", material: "", qty: "" }); }} style={{ background: C.gold, color: C.navy, padding: "12px 28px", borderRadius: 8, border: "none", cursor: "pointer", fontWeight: 800 }}>New Enquiry</button>
                 </div>
               ) : (
                 <div style={{ background: C.navySurface, borderRadius: 20, padding: 44, border: `1px solid ${C.border}` }}>
                   <div style={{ fontSize: 16, fontWeight: 800, color: C.white, marginBottom: 6 }}>Fill in your details</div>
-                  <div style={{ fontSize: 13, color: C.muted, marginBottom: 28 }}>Handled by our CRM team at <strong style={{ color: C.text }}>CRM@kregroup.co.in</strong></div>
+                  <div style={{ fontSize: 13, color: C.muted, marginBottom: 28 }}>Sent to our team at <strong style={{ color: C.text }}>quotes@kregroup.co.in</strong></div>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18, marginBottom: 18 }}>
                     {[["name","Your Name"],["company","Company Name"],["phone","Phone / WhatsApp"],["email","Email Address"]].map(([k, l]) => (
                       <div key={k}>
@@ -542,13 +578,16 @@ export default function App() {
                       <input value={form.qty} onChange={e => setForm({ ...form, qty: e.target.value })} placeholder="e.g. 200 MT / month" style={{ width: "100%", background: C.navyMid, border: `1px solid ${C.border}`, borderRadius: 8, padding: "12px 14px", fontSize: 14, outline: "none", boxSizing: "border-box", color: C.text, fontFamily: "inherit" }} />
                     </div>
                   </div>
-                  <button onClick={() => setSubmitted(true)} style={{ width: "100%", background: C.gold, color: C.navy, padding: "16px", borderRadius: 10, fontSize: 16, fontWeight: 800, border: "none", cursor: "pointer" }}>
-                    Submit Enquiry →
-                  </button>
+                  <>
+                    {submitError && <div style={{ color: "#ff6b6b", fontSize: 13, marginBottom: 12, padding: "10px 14px", background: "rgba(255,107,107,0.08)", borderRadius: 8, border: "1px solid rgba(255,107,107,0.2)" }}>{submitError}</div>}
+                    <button onClick={handleSubmit} disabled={submitting} style={{ width: "100%", background: submitting ? "rgba(201,168,76,0.5)" : C.gold, color: C.navy, padding: "16px", borderRadius: 10, fontSize: 16, fontWeight: 800, border: "none", cursor: submitting ? "wait" : "pointer", opacity: submitting ? 0.7 : 1 }}>
+                      {submitting ? "Sending..." : "Submit Enquiry →"}
+                    </button>
+                  </>
                 </div>
               )}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginTop: 16 }}>
-                {[["📍","Address","Adityapur Industrial Area, Jamshedpur"],["📧","CRM Email","CRM@kregroup.co.in"],["🌐","Website","kregroup.co.in"]].map(([icon, l, v]) => (
+                {[["📍","Address","Adityapur Industrial Area, Jamshedpur"],["📧","Email","quotes@kregroup.co.in"],["🌐","Website","kregroup.co.in"]].map(([icon, l, v]) => (
                   <div key={l} style={{ background: C.navySurface, border: `1px solid ${C.border}`, borderRadius: 12, padding: 18, textAlign: "center" }}>
                     <div style={{ fontSize: 20, marginBottom: 6 }}>{icon}</div>
                     <div style={{ fontSize: 10, color: C.muted, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>{l}</div>
