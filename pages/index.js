@@ -128,14 +128,29 @@ const Card = ({ children, style = {} }) => (
 export default function App() {
   const [nav, setNav] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
-  const [form, setForm] = useState({ name: "", company: "", phone: "", email: "", material: "", qty: "" });
+  const [form, setForm] = useState({ quoteType: "", name: "", company: "", phone: "", email: "", material: "", qty: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validatePhone = (phone) => /^[6-9]\d{9}$/.test(phone.replace(/\D/g, "").slice(-10));
+
   const handleSubmit = async () => {
+    if (!form.quoteType) {
+      setSubmitError("Please select if you want to Buy or Sell scrap");
+      return;
+    }
     if (!form.name || !form.phone || !form.email) {
       setSubmitError("Please fill Name, Phone and Email");
+      return;
+    }
+    if (!validateEmail(form.email)) {
+      setSubmitError("Please enter a valid email address");
+      return;
+    }
+    if (!validatePhone(form.phone)) {
+      setSubmitError("Please enter a valid 10-digit Indian phone number");
       return;
     }
     setSubmitting(true);
@@ -145,15 +160,18 @@ export default function App() {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
-          _subject: "New Quote Request - K R Enterprises Website",
+          _subject: `New ${form.quoteType} Quote Request - K R Enterprises`,
           _cc: "quotes@kregroup.co.in",
           _template: "table",
+          _honey: "",
+          Quote_Type: form.quoteType,
           Name: form.name,
           Company: form.company,
           Phone: form.phone,
           Email: form.email,
           Material: form.material,
           Quantity_MT: form.qty,
+          Message: form.message || "Not provided",
         })
       });
       const data = await res.json();
@@ -555,12 +573,37 @@ export default function App() {
                   <div style={{ fontSize: 26, fontWeight: 900, marginBottom: 8, color: C.white }}>Enquiry Received!</div>
                   <div style={{ color: C.muted, fontSize: 15, marginBottom: 6 }}>Our team will contact you within 4 business hours.</div>
                   <div style={{ color: C.muted, fontSize: 13, marginBottom: 28 }}>Sent to <strong style={{ color: C.text }}>quotes@kregroup.co.in</strong></div>
-                  <button onClick={() => { setSubmitted(false); setForm({ name: "", company: "", phone: "", email: "", material: "", qty: "" }); }} style={{ background: C.gold, color: C.navy, padding: "12px 28px", borderRadius: 8, border: "none", cursor: "pointer", fontWeight: 800 }}>New Enquiry</button>
+                  <button onClick={() => { setSubmitted(false); setForm({ quoteType: "", name: "", company: "", phone: "", email: "", material: "", qty: "", message: "" }); }} style={{ background: C.gold, color: C.navy, padding: "12px 28px", borderRadius: 8, border: "none", cursor: "pointer", fontWeight: 800 }}>New Enquiry</button>
                 </div>
               ) : (
                 <div style={{ background: C.navySurface, borderRadius: 20, padding: 44, border: `1px solid ${C.border}` }}>
                   <div style={{ fontSize: 16, fontWeight: 800, color: C.white, marginBottom: 6 }}>Fill in your details</div>
-                  <div style={{ fontSize: 13, color: C.muted, marginBottom: 28 }}>Sent to our team at <strong style={{ color: C.text }}>quotes@kregroup.co.in</strong></div>
+                  <div style={{ fontSize: 13, color: C.muted, marginBottom: 24 }}>Sent to our team at <strong style={{ color: C.text }}>quotes@kregroup.co.in</strong></div>
+
+                  {/* Buy/Sell Selector */}
+                  <div style={{ marginBottom: 22 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: C.muted, marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.8 }}>I want to <span style={{ color: C.gold }}>*</span></div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                      {[
+                        { val: "Buy", icon: "🛒", desc: "Looking to buy scrap" },
+                        { val: "Sell", icon: "📦", desc: "Want to sell scrap" }
+                      ].map(opt => (
+                        <button key={opt.val} type="button" onClick={() => setForm({ ...form, quoteType: opt.val })} style={{
+                          background: form.quoteType === opt.val ? "rgba(201,168,76,0.12)" : C.navyMid,
+                          border: form.quoteType === opt.val ? `2px solid ${C.gold}` : `2px solid ${C.border}`,
+                          borderRadius: 10, padding: "16px 18px", cursor: "pointer", textAlign: "left",
+                          transition: "all 0.2s", fontFamily: "inherit"
+                        }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+                            <span style={{ fontSize: 18 }}>{opt.icon}</span>
+                            <span style={{ fontSize: 14, fontWeight: 800, color: form.quoteType === opt.val ? C.gold : C.white }}>{opt.val} Scrap</span>
+                          </div>
+                          <div style={{ fontSize: 11, color: C.muted, paddingLeft: 28 }}>{opt.desc}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18, marginBottom: 18 }}>
                     {[["name","Your Name"],["company","Company Name"],["phone","Phone / WhatsApp"],["email","Email Address"]].map(([k, l]) => (
                       <div key={k}>
@@ -580,6 +623,16 @@ export default function App() {
                       <input value={form.qty} onChange={e => setForm({ ...form, qty: e.target.value })} placeholder="e.g. 200 MT / month" style={{ width: "100%", background: C.navyMid, border: `1px solid ${C.border}`, borderRadius: 8, padding: "12px 14px", fontSize: 14, outline: "none", boxSizing: "border-box", color: C.text, fontFamily: "inherit" }} />
                     </div>
                   </div>
+
+                  {/* Tell Us Details */}
+                  <div style={{ marginBottom: 18 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: C.muted, marginBottom: 6, textTransform: "uppercase", letterSpacing: 0.8 }}>Tell Us Details <span style={{ color: C.muted, fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span></div>
+                    <textarea value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Specific grade, delivery location, frequency, payment terms — anything you'd like us to know..." rows={3} style={{ width: "100%", background: C.navyMid, border: `1px solid ${C.border}`, borderRadius: 8, padding: "12px 14px", fontSize: 14, outline: "none", boxSizing: "border-box", color: C.text, fontFamily: "inherit", resize: "vertical", minHeight: 70 }} />
+                  </div>
+
+                  {/* Honeypot for spam protection - hidden field */}
+                  <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
                   <>
                     {submitError && <div style={{ color: "#ff6b6b", fontSize: 13, marginBottom: 12, padding: "10px 14px", background: "rgba(255,107,107,0.08)", borderRadius: 8, border: "1px solid rgba(255,107,107,0.2)" }}>{submitError}</div>}
                     <button onClick={handleSubmit} disabled={submitting} style={{ width: "100%", background: submitting ? "rgba(201,168,76,0.5)" : C.gold, color: C.navy, padding: "16px", borderRadius: 10, fontSize: 16, fontWeight: 800, border: "none", cursor: submitting ? "wait" : "pointer", opacity: submitting ? 0.7 : 1 }}>
