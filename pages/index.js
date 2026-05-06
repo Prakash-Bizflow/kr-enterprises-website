@@ -99,12 +99,29 @@ const PROCESS = [
 ];
 
 const C = {
-  navy: "#0D1B2A", navyMid: "#162030", navyLight: "#1E2E42", navySurface: "#1A2840",
-  gold: "#C9A84C", goldHover: "#DFB94A", goldDim: "rgba(201,168,76,0.1)",
-  goldBorder: "rgba(201,168,76,0.22)",
-  white: "#FFFFFF", text: "#E8EDF2", textDim: "rgba(232,237,242,0.6)",
-  border: "rgba(255,255,255,0.08)", borderGold: "rgba(201,168,76,0.2)",
-  green: "#0A1F12", greenMid: "#1A5C35", greenAccent: "#4CAF7A",
+  // Premium Charcoal Steel base
+  navy: "#0F1419",        // Deep charcoal (was navy)
+  navyMid: "#171D24",     // Mid charcoal
+  navyLight: "#1F2630",   // Light charcoal
+  navySurface: "#1C2229", // Card surface
+  // Recycler Green accent (logo match)
+  gold: "#3FB562",        // Recycler green (was gold)
+  goldHover: "#54C677",   // Hover green
+  goldDim: "rgba(63,181,98,0.1)",
+  goldBorder: "rgba(63,181,98,0.25)",
+  // Steel silver (logo monogram match)
+  silver: "#C5CCD3",
+  silverDim: "rgba(197,204,211,0.15)",
+  // Text + base
+  white: "#FFFFFF",
+  text: "#E8EDF2",
+  textDim: "rgba(232,237,242,0.6)",
+  border: "rgba(255,255,255,0.07)",
+  borderGold: "rgba(63,181,98,0.2)",
+  // Sustainability dedicated section
+  green: "#0A1F12",
+  greenMid: "#1A5C35",
+  greenAccent: "#4CAF7A",
   muted: "rgba(232,237,242,0.45)",
 };
 
@@ -209,10 +226,12 @@ export default function App() {
         transition: "all 0.3s"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, cursor: "pointer" }} onClick={() => goTo("Home")}>
-          <div style={{ width: 44, height: 44, borderRadius: 10, background: `linear-gradient(145deg,${C.gold},${C.goldHover})`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: C.navy, fontSize: 15, boxShadow: `0 4px 16px ${C.goldDim}` }}>KR</div>
+          <div style={{ height: 50, display: "flex", alignItems: "center", background: scrolled ? "transparent" : "rgba(255,255,255,0.95)", padding: scrolled ? 0 : "4px 10px", borderRadius: 8, transition: "all 0.3s" }}>
+            <img src="/logo.png" alt="K R Enterprises" style={{ height: scrolled ? 44 : 42, width: "auto", display: "block" }} />
+          </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: 16, color: C.white }}>K R Enterprises</div>
-            <div style={{ fontSize: 10, color: C.gold, letterSpacing: 2, textTransform: "uppercase" }}>Iron & Steel · Est. 1984</div>
+            <div style={{ fontWeight: 800, fontSize: 15, color: C.white }}>K R Enterprises</div>
+            <div style={{ fontSize: 10, color: C.gold, letterSpacing: 2, textTransform: "uppercase" }}>Metal Scrap Recycler · Est. 1984</div>
           </div>
         </div>
         <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
@@ -241,21 +260,21 @@ export default function App() {
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 32 }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: C.goldDim, border: `1px solid ${C.goldBorder}`, color: C.gold, padding: "7px 16px", borderRadius: 24, fontSize: 11, fontWeight: 700, letterSpacing: 1.3, textTransform: "uppercase" }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.gold, display: "inline-block" }} />
-                  Eastern India's Leading Scrap Supplier
+                  Eastern India's Leading Metal Scrap Recycler
                 </div>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.04)", border: `1px solid ${C.border}`, color: C.muted, padding: "7px 14px", borderRadius: 24, fontSize: 11, letterSpacing: 1 }}>
                   Est. 1984 · Jamshedpur
                 </div>
               </div>
 
-              <h1 style={{ fontSize: "clamp(38px,5.5vw,68px)", fontWeight: 900, color: C.white, lineHeight: 1.06, margin: "0 0 28px", letterSpacing: -1 }}>
-                Where Quality<br />
-                <span style={{ color: C.gold }}>Meets Reliability</span><br />
-                in Scrap Trading
+              <h1 style={{ fontSize: "clamp(38px,5.5vw,68px)", fontWeight: 900, color: C.white, lineHeight: 1.06, margin: "0 0 20px", letterSpacing: -1 }}>
+                Sustainability<br />
+                <span style={{ color: C.gold }}>Forged,</span><br />
+                One Ton at a Time
               </h1>
 
               <p style={{ fontSize: 17, color: C.textDim, lineHeight: 1.88, maxWidth: 580, marginBottom: 44 }}>
-                Jamshedpur-based ferrous scrap trader supplying <strong style={{ color: C.white }}>6000+ MT monthly</strong> of HMS, CRC/HRC Baled, Structural and Stainless scrap to India's largest steel manufacturers — for over four decades.
+                K R Enterprises is a Jamshedpur-based <strong style={{ color: C.white }}>metal scrap recycler</strong> — supplying 6000+ MT monthly of HMS, CRC/HRC Baled, Structural and Stainless scrap to India's largest steel manufacturers. Recycling steel, conserving resources, building a circular economy — for four decades.
               </p>
 
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -320,27 +339,71 @@ export default function App() {
             </div>
           </div>
 
-          {/* ENV TEASER */}
-          <div style={{ padding: "70px 6%", background: C.green }}>
-            <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 40 }}>
-              <div style={{ maxWidth: 460 }}>
-                <Tag label="Sustainability" green />
-                <h2 style={{ fontSize: 30, fontWeight: 900, color: C.white, margin: "16px 0 14px" }}>Scrap Trading is Green Business</h2>
-                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.58)", lineHeight: 1.85, marginBottom: 22 }}>
-                  Every tonne of ferrous scrap traded saves <strong style={{ color: C.greenAccent }}>1.1 tonnes of iron ore</strong> and cuts CO₂ emissions by <strong style={{ color: C.greenAccent }}>58%</strong> versus primary steel production. K R Enterprises has been contributing to India's circular economy since 1984.
+          {/* SUSTAINABILITY — BIG SECTION */}
+          <div style={{ padding: "100px 6%", background: `linear-gradient(160deg, ${C.green} 0%, #0F2818 50%, #0A1F12 100%)`, position: "relative", overflow: "hidden" }}>
+            {/* Decorative recycle ring */}
+            {[600, 420, 240].map((s, i) => (
+              <div key={i} style={{ position: "absolute", left: `-${s/3}px`, top: `${10 + i * 15}%`, width: s, height: s, borderRadius: "50%", border: `1px solid rgba(76,175,122,${0.05 + i * 0.03})`, pointerEvents: "none" }} />
+            ))}
+
+            <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 }}>
+              {/* Header */}
+              <div style={{ textAlign: "center", marginBottom: 56 }}>
+                <Tag label="Sustainability • ESG • Circular Economy" green />
+                <h2 style={{ fontSize: "clamp(32px,4vw,46px)", fontWeight: 900, color: C.white, margin: "18px 0 16px", letterSpacing: -0.5 }}>
+                  We Don't Just Trade Scrap.<br />
+                  <span style={{ color: C.greenAccent }}>We Build a Circular Steel Economy.</span>
+                </h2>
+                <p style={{ fontSize: 16, color: "rgba(255,255,255,0.58)", lineHeight: 1.85, maxWidth: 720, margin: "0 auto" }}>
+                  For over 40 years, K R Enterprises has been quietly powering India's recycled steel supply — diverting industrial scrap from landfills, reducing dependence on iron ore mining, and cutting carbon emissions for our nation's largest steel producers.
                 </p>
-                <button onClick={() => goTo("Sustainability")} style={{ background: "transparent", color: C.greenAccent, padding: "10px 22px", borderRadius: 8, fontSize: 13, fontWeight: 700, border: "1px solid rgba(76,175,122,0.35)", cursor: "pointer" }}>
-                  Our Environmental Impact →
-                </button>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-                {ENV_STATS.map((e, i) => (
-                  <div key={i} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(76,175,122,0.15)", borderRadius: 14, padding: "20px 18px", textAlign: "center", minWidth: 140 }}>
-                    <div style={{ fontSize: 22, marginBottom: 6 }}>{e.icon}</div>
-                    <div style={{ fontSize: 26, fontWeight: 900, color: C.greenAccent, marginBottom: 4 }}>{e.val}</div>
-                    <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", lineHeight: 1.5 }}>{e.label}</div>
+
+              {/* Big Stats Grid */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 16, marginBottom: 48 }}>
+                {[
+                  { val: "1.1 T", label: "Iron Ore Saved", sub: "per tonne of scrap recycled" },
+                  { val: "58%", label: "Lower CO₂ Emissions", sub: "vs primary steel production" },
+                  { val: "75%", label: "Energy Conserved", sub: "vs virgin steel manufacturing" },
+                  { val: "76%", label: "Less Water Pollution", sub: "compared to primary route" },
+                ].map((s, i) => (
+                  <div key={i} style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(76,175,122,0.18)",
+                    borderRadius: 16, padding: "28px 22px", textAlign: "center",
+                    transition: "all 0.2s"
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(76,175,122,0.06)"; e.currentTarget.style.borderColor = "rgba(76,175,122,0.4)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; e.currentTarget.style.borderColor = "rgba(76,175,122,0.18)"; }}>
+                    <div style={{ fontSize: 38, fontWeight: 900, color: C.greenAccent, marginBottom: 6, lineHeight: 1 }}>{s.val}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: C.white, marginBottom: 4 }}>{s.label}</div>
+                    <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", lineHeight: 1.5 }}>{s.sub}</div>
                   </div>
                 ))}
+              </div>
+
+              {/* Two column callouts */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 16, marginBottom: 40 }}>
+                <div style={{ background: "rgba(76,175,122,0.06)", border: "1px solid rgba(76,175,122,0.2)", borderRadius: 16, padding: "26px 28px" }}>
+                  <div style={{ fontSize: 22, marginBottom: 10 }}>🇮🇳</div>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: C.white, marginBottom: 8 }}>Aligned with India's Steel Scrap Recycling Policy 2019</div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}>
+                    Government of India recognises organised scrap recycling as a national priority for sustainable steel production. K R Enterprises has been doing it since 1984 — long before it became policy.
+                  </div>
+                </div>
+                <div style={{ background: "rgba(76,175,122,0.06)", border: "1px solid rgba(76,175,122,0.2)", borderRadius: 16, padding: "26px 28px" }}>
+                  <div style={{ fontSize: 22, marginBottom: 10 }}>📈</div>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: C.white, marginBottom: 8 }}>Future-Ready ESG-Aligned Business</div>
+                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}>
+                    As India targets net-zero by 2070 and steel decarbonisation accelerates, scrap-based steel is the future. We are positioned at the heart of this transition — a sustainable, growing, investment-ready enterprise.
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ textAlign: "center" }}>
+                <button onClick={() => goTo("Sustainability")} style={{ background: C.greenAccent, color: "#0A1F12", padding: "14px 32px", borderRadius: 10, fontSize: 14, fontWeight: 800, border: "none", cursor: "pointer", boxShadow: "0 6px 24px rgba(76,175,122,0.35)" }}>
+                  Explore Our Environmental Impact →
+                </button>
               </div>
             </div>
           </div>
@@ -659,12 +722,14 @@ export default function App() {
       <div style={{ background: C.navyMid, borderTop: `1px solid ${C.border}`, padding: "44px 6%", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 20 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-            <div style={{ width: 32, height: 32, borderRadius: 8, background: C.gold, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: C.navy, fontSize: 11 }}>KR</div>
+            <div style={{ height: 38, background: "white", padding: "3px 8px", borderRadius: 6, display: "flex", alignItems: "center" }}>
+              <img src="/logo.png" alt="K R Enterprises" style={{ height: 32, width: "auto", display: "block" }} />
+            </div>
             <span style={{ fontWeight: 900, color: C.white, fontSize: 15 }}>K R Enterprises</span>
           </div>
-          <div style={{ color: C.muted, fontSize: 12, marginBottom: 2 }}>© 2025 · kregroup.co.in · Iron & Steel Scrap Trading · Jamshedpur, Jharkhand</div>
+          <div style={{ color: C.muted, fontSize: 12, marginBottom: 2 }}>© 2025 · kregroup.co.in · Metal Scrap Recycler · Jamshedpur, Jharkhand</div>
           <div style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>GST: 20AAHFK1739R2Z1 · MSME: UDYAM-JH-06-0001117 · IEC: 2114001105</div>
-          <div style={{ color: "rgba(255,255,255,0.1)", fontSize: 10, marginTop: 3 }}>iron scrap Jamshedpur · steel scrap trader Jharkhand · HMS scrap supplier India · ferrous scrap Eastern India</div>
+          <div style={{ color: "rgba(255,255,255,0.1)", fontSize: 10, marginTop: 3 }}>metal scrap recycler Jamshedpur · iron steel scrap recycling Jharkhand · HMS scrap supplier · ferrous metal recycler Eastern India · sustainable steel scrap</div>
           <div style={{ color: 'rgba(255,255,255,0.15)', fontSize: 10, marginTop: 8 }}>This site is powered by <span style={{ color: '#C9A84C', opacity: 0.5 }}>BizFlow</span></div>
         </div>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
