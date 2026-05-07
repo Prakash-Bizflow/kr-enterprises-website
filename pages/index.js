@@ -24,7 +24,7 @@ const CLIENTS = [
 
 const STATS = [
   { val: "1984", label: "Established" },
-  { val: "6000+ MT", label: "Monthly Supply" },
+  { val: "Pan India", label: "Supply Network" },
   { val: "40+", label: "Years of Trust" },
   { val: "99%", label: "On-Time Delivery" },
 ];
@@ -274,7 +274,7 @@ export default function App() {
               </h1>
 
               <p style={{ fontSize: 17, color: C.textDim, lineHeight: 1.88, maxWidth: 580, marginBottom: 44 }}>
-                K R Enterprises is a Jamshedpur-based <strong style={{ color: C.white }}>metal scrap recycler</strong> — supplying 6000+ MT monthly of HMS, CRC/HRC Baled, Structural and Stainless scrap to India's largest steel manufacturers. Recycling steel, conserving resources, building a circular economy — for four decades.
+                K R Enterprises is a Jamshedpur-based <strong style={{ color: C.white }}>metal scrap recycler</strong> — supplying HMS, CRC/HRC Baled, Structural and Stainless scrap at scale to India's largest steel manufacturers. Recycling steel, conserving resources, building a circular economy — for four decades.
               </p>
 
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -355,7 +355,7 @@ export default function App() {
                   <span style={{ color: C.greenAccent }}>We Build a Circular Steel Economy.</span>
                 </h2>
                 <p style={{ fontSize: 16, color: "rgba(255,255,255,0.58)", lineHeight: 1.85, maxWidth: 720, margin: "0 auto" }}>
-                  For over 40 years, K R Enterprises has been quietly powering India's recycled steel supply — diverting industrial scrap from landfills, reducing dependence on iron ore mining, and cutting carbon emissions for our nation's largest steel producers.
+                  For over 40 years, K R Enterprises has been quietly powering India's recycled steel supply — channeling industrial scrap back into the production cycle, reducing dependence on iron ore mining, and cutting carbon emissions for our nation's largest steel producers.
                 </p>
               </div>
 
@@ -456,7 +456,7 @@ export default function App() {
                 </p>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 32 }}>
-                  {[["Founded", "1984, Jamshedpur"], ["Monthly Supply", "6000+ MT"], ["On-Time Delivery", "99%"], ["Order Range", "100–2000 MT"], ["MSME Category", "Medium Enterprise"], ["Coverage", "PAN India"]].map(([l, v]) => (
+                  {[["Founded", "1984, Jamshedpur"], ["Monthly Supply", "Bulk Volumes"], ["On-Time Delivery", "99%"], ["Order Range", "100–2000 MT"], ["MSME Category", "Medium Enterprise"], ["Coverage", "PAN India"]].map(([l, v]) => (
                     <div key={l} style={{ background: C.navySurface, borderRadius: 10, padding: "16px 18px", borderLeft: `3px solid ${C.gold}` }}>
                       <div style={{ fontSize: 10, color: C.muted, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>{l}</div>
                       <div style={{ fontSize: 15, fontWeight: 900, color: C.white }}>{v}</div>
@@ -512,7 +512,7 @@ export default function App() {
           <div style={{ background: `linear-gradient(150deg,${C.navy},${C.navyMid})`, padding: "80px 6% 70px", borderBottom: `1px solid ${C.border}` }}>
             <Tag label="What We Trade" />
             <h1 style={{ fontSize: 48, fontWeight: 900, color: C.white, margin: "16px 0 14px" }}>Products</h1>
-            <p style={{ fontSize: 16, color: C.textDim, maxWidth: 520, lineHeight: 1.8 }}>Iron & Steel scrap in all major grades — sourced from Eastern India's leading industrial generators. 6000+ MT monthly supply capacity.</p>
+            <p style={{ fontSize: 16, color: C.textDim, maxWidth: 520, lineHeight: 1.8 }}>Iron & Steel scrap in all major grades — sourced directly from Eastern India's leading industrial generators. Consistent monthly supply at industrial scale.</p>
           </div>
           <div style={{ padding: "70px 6%", background: C.navy }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 1, maxWidth: 1100, margin: "0 auto", border: `1px solid ${C.borderGold}`, borderRadius: 20, overflow: "hidden", background: C.borderGold }}>
