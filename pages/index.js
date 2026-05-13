@@ -145,6 +145,14 @@ const Card = ({ children, style = {} }) => (
 export default function App() {
   const [nav, setNav] = useState("Home");
   const [scrolled, setScrolled] = useState(false);
+  // Birthday banner — shows from 13 May 00:00 to 14 May 23:59 (IST), auto-hides after
+  const isBirthdayPeriod = () => {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 4, 13, 0, 0, 0); // 13 May 00:00
+    const end = new Date(now.getFullYear(), 4, 14, 23, 59, 59); // 14 May 23:59
+    return now >= start && now <= end;
+  };
+  const [showBirthday, setShowBirthday] = useState(isBirthdayPeriod());
   const [form, setForm] = useState({ quoteType: "", name: "", company: "", phone: "", email: "", material: "", qty: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
