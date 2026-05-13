@@ -223,9 +223,126 @@ export default function App() {
   return (
     <div style={{ fontFamily: "'Segoe UI','Helvetica Neue',Arial,sans-serif", background: C.navy, color: C.text, minHeight: "100vh" }}>
 
+      {/* ── BIRTHDAY BANNER (Auto-hides after 14 May 23:59) ── */}
+      {showBirthday && (
+        <div style={{
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
+          background: "radial-gradient(ellipse at 20% 50%, rgba(255,215,100,0.35) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(63,181,98,0.25) 0%, transparent 50%), linear-gradient(90deg, #1a1410 0%, #2d1f0a 25%, #0a2415 50%, #2d1f0a 75%, #1a1410 100%)",
+          backgroundSize: "100% 100%, 100% 100%, 200% 100%",
+          animation: "bdayBgShift 8s ease-in-out infinite",
+          borderBottom: "2px solid #C9A84C",
+          boxShadow: "0 4px 24px rgba(201,168,76,0.25)",
+          padding: "14px 60px 14px 6%",
+          overflow: "hidden"
+        }}>
+          <style>{`
+            @keyframes bdayBgShift {
+              0%, 100% { background-position: 0% 50%, 0% 50%, 0% 50%; }
+              50% { background-position: 100% 50%, 100% 50%, 100% 50%; }
+            }
+            @keyframes bdayFall1 {
+              0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+              10% { opacity: 1; }
+              90% { opacity: 1; }
+              100% { transform: translateY(90px) rotate(360deg); opacity: 0; }
+            }
+            @keyframes bdayFall2 {
+              0% { transform: translateY(-20px) rotate(0deg) translateX(0); opacity: 0; }
+              10% { opacity: 1; }
+              50% { transform: translateY(40px) rotate(180deg) translateX(15px); }
+              90% { opacity: 1; }
+              100% { transform: translateY(90px) rotate(360deg) translateX(-10px); opacity: 0; }
+            }
+            @keyframes bdayBounce {
+              0%, 100% { transform: translateY(0) scale(1) rotate(-5deg); }
+              25% { transform: translateY(-7px) scale(1.1) rotate(0deg); }
+              50% { transform: translateY(-3px) scale(1.05) rotate(5deg); }
+              75% { transform: translateY(-7px) scale(1.1) rotate(0deg); }
+            }
+            @keyframes bdayTextShine { to { background-position: 200% center; } }
+            @keyframes bdayHeartbeat {
+              0%, 100% { transform: scale(1); }
+              15% { transform: scale(1.25); }
+              30% { transform: scale(1); }
+              45% { transform: scale(1.25); }
+            }
+            @keyframes bdaySparkle {
+              0%, 100% { opacity: 0; transform: scale(0); }
+              50% { opacity: 1; transform: scale(1.5); }
+            }
+            .bday-confetti { position: absolute; width: 6px; height: 6px; pointer-events: none; }
+            .bday-c1 { background: #C9A84C; top: 0; left: 10%; animation: bdayFall1 3s linear infinite; }
+            .bday-c2 { background: #3FB562; top: 0; left: 25%; animation: bdayFall2 4s linear infinite 0.5s; }
+            .bday-c3 { background: #DFB94A; top: 0; left: 40%; animation: bdayFall1 3.5s linear infinite 1s; border-radius: 50%; }
+            .bday-c4 { background: #54C677; top: 0; left: 60%; animation: bdayFall2 3s linear infinite 1.5s; }
+            .bday-c5 { background: #C9A84C; top: 0; left: 75%; animation: bdayFall1 4s linear infinite 0.2s; border-radius: 50%; }
+            .bday-c6 { background: #3FB562; top: 0; left: 90%; animation: bdayFall2 3.2s linear infinite 0.8s; }
+            .bday-c7 { background: #DFB94A; top: 0; left: 15%; animation: bdayFall1 3.8s linear infinite 2s; border-radius: 50%; }
+            .bday-c8 { background: #54C677; top: 0; left: 50%; animation: bdayFall2 3.5s linear infinite 1.2s; }
+            .bday-c9 { background: #C9A84C; top: 0; left: 85%; animation: bdayFall1 4.2s linear infinite 1.8s; }
+            .bday-sparkle { position: absolute; width: 4px; height: 4px; background: white; border-radius: 50%; box-shadow: 0 0 8px 2px rgba(255,215,100,0.8); pointer-events: none; }
+            .bday-s1 { top: 30%; left: 18%; animation: bdaySparkle 2s ease-in-out infinite; }
+            .bday-s2 { top: 60%; left: 35%; animation: bdaySparkle 2.5s ease-in-out infinite 0.5s; }
+            .bday-s3 { top: 25%; right: 25%; animation: bdaySparkle 2.2s ease-in-out infinite 1s; }
+            .bday-s4 { top: 70%; right: 12%; animation: bdaySparkle 1.8s ease-in-out infinite 1.5s; }
+            .bday-s5 { top: 40%; left: 50%; animation: bdaySparkle 2.3s ease-in-out infinite 0.8s; }
+            .bday-emoji { display: inline-block; font-size: 28px; animation: bdayBounce 2s ease-in-out infinite; filter: drop-shadow(0 0 8px rgba(255,215,100,0.6)); }
+            .bday-emoji-delay { animation-delay: 0.4s; }
+            .bday-heart { color: #FF6B8A; animation: bdayHeartbeat 1.5s ease-in-out infinite; display: inline-block; }
+          `}</style>
+
+          <span className="bday-confetti bday-c1"></span>
+          <span className="bday-confetti bday-c2"></span>
+          <span className="bday-confetti bday-c3"></span>
+          <span className="bday-confetti bday-c4"></span>
+          <span className="bday-confetti bday-c5"></span>
+          <span className="bday-confetti bday-c6"></span>
+          <span className="bday-confetti bday-c7"></span>
+          <span className="bday-confetti bday-c8"></span>
+          <span className="bday-confetti bday-c9"></span>
+          <span className="bday-sparkle bday-s1"></span>
+          <span className="bday-sparkle bday-s2"></span>
+          <span className="bday-sparkle bday-s3"></span>
+          <span className="bday-sparkle bday-s4"></span>
+          <span className="bday-sparkle bday-s5"></span>
+
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 18, flexWrap: "wrap", position: "relative", zIndex: 3 }}>
+            <span className="bday-emoji">🎂</span>
+            <div style={{ textAlign: "center", maxWidth: 820 }}>
+              <div style={{
+                fontSize: 15, fontWeight: 800,
+                background: "linear-gradient(90deg, #FFD966 0%, #FFEB9C 30%, #95E0AC 70%, #FFD966 100%)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                animation: "bdayTextShine 3s linear infinite",
+                letterSpacing: 0.5, marginBottom: 4
+              }}>Happy Birthday, Shri Vivek Malhotra</div>
+              <div style={{ fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.78)", letterSpacing: 0.2, lineHeight: 1.5 }}>
+                Every brick of K R Enterprises has been laid by your sweat and vision <span className="bday-heart">❤</span>
+                {" "}From dawn till dusk, your tireless dedication is why we stand where we do today —
+                and the same passion will take us where we're going tomorrow.
+                The entire K R family wishes you health, happiness, and many more milestones ahead.
+              </div>
+            </div>
+            <span className="bday-emoji bday-emoji-delay">🎉</span>
+          </div>
+
+          <button onClick={() => setShowBirthday(false)} style={{
+            position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)",
+            background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)",
+            color: "rgba(255,255,255,0.7)", width: 28, height: 28, borderRadius: "50%",
+            fontSize: 16, cursor: "pointer", padding: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            lineHeight: 1, zIndex: 4
+          }} aria-label="Close birthday banner">×</button>
+        </div>
+      )}
+
       {/* ── NAVBAR ── */}
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 999,
+        position: "fixed", top: showBirthday ? 90 : 0, left: 0, right: 0, zIndex: 999,
         background: scrolled ? "rgba(13,27,42,0.98)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? `1px solid ${C.border}` : "none",
