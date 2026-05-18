@@ -80,7 +80,7 @@ const ENV_STATS = [
 ];
 
 const ENV_POINTS = [
-  { icon: "⛏️", title: "Reduces Destructive Mining", desc: "Every tonne we trade saves 1.1 tonnes of iron ore, 630 kg of coking coal and 55 kg of limestone — preserving India's natural resources for future generations." },
+  { icon: "⛏️", title: "Reduces Destructive Mining", desc: "Every tonne we recycle saves 1.1 tonnes of iron ore, 630 kg of coking coal and 55 kg of limestone — preserving India's natural resources for future generations." },
   { icon: "🌿", title: "Cuts Carbon Emissions by 58%", desc: "Scrap-based induction furnace steel emits just 0.53 tonnes of CO₂ per tonne — versus 2.54 tonnes from the traditional blast furnace route. Every shipment we supply is a step toward green steel." },
   { icon: "⚡", title: "Conserves Significant Energy", desc: "Recycling steel saves up to 75% of the energy used in primary production. With India's steel sector accounting for 12% of national GHG emissions, organised scrap trading is a national imperative." },
   { icon: "♻️", title: "Powers India's Circular Economy", desc: "As per India's Steel Scrap Recycling Policy 2019, organised scrap trading is a national priority. K R Enterprises has been contributing to this mission since 1984 — long before it became policy." },
@@ -394,8 +394,8 @@ export default function App() {
 
               <h1 style={{ fontSize: "clamp(38px,5.5vw,68px)", fontWeight: 900, color: C.white, lineHeight: 1.06, margin: "0 0 20px", letterSpacing: -1 }}>
                 Sustainability<br />
-                <span style={{ color: C.gold }}>Forged,</span><br />
-                One Ton at a Time
+                <span style={{ color: C.gold }}>Forged</span><br />
+                with Every Ton, Every Time
               </h1>
 
               <p style={{ fontSize: 17, color: C.textDim, lineHeight: 1.88, maxWidth: 580, marginBottom: 44 }}>
@@ -476,11 +476,11 @@ export default function App() {
               <div style={{ textAlign: "center", marginBottom: 56 }}>
                 <Tag label="Sustainability • ESG • Circular Economy" green />
                 <h2 style={{ fontSize: "clamp(32px,4vw,46px)", fontWeight: 900, color: C.white, margin: "18px 0 16px", letterSpacing: -0.5 }}>
-                  We Don't Just Trade Scrap.<br />
+                  We Don't Just Recycle Metal.<br />
                   <span style={{ color: C.greenAccent }}>We Build a Circular Steel Economy.</span>
                 </h2>
                 <p style={{ fontSize: 16, color: "rgba(255,255,255,0.58)", lineHeight: 1.85, maxWidth: 720, margin: "0 auto" }}>
-                  For over 40 years, K R Enterprises has been quietly powering India's recycled steel supply — channeling industrial scrap back into the production cycle, reducing dependence on iron ore mining, and cutting carbon emissions for our nation's largest steel producers.
+                  For over 40 years, K R Enterprises has been quietly powering India's recycled steel supply — channeling industrial scrap back into the production cycle as a dedicated metal scrap recycler, reducing dependence on iron ore mining, and cutting carbon emissions for our nation's largest steel producers.
                 </p>
               </div>
 
@@ -559,7 +559,7 @@ export default function App() {
             <Tag label="Our Story" />
             <h1 style={{ fontSize: 48, fontWeight: 900, color: C.white, margin: "16px 0 20px" }}>About K R Enterprises</h1>
             <p style={{ fontSize: 17, color: C.textDim, maxWidth: 640, lineHeight: 1.88 }}>
-              Eastern India's leading iron and steel scrap trader — four decades of trust, reliability and growth from the steel capital of the country.
+              Eastern India's leading metal scrap recycler — four decades of trust, reliability and growth from the steel capital of the country.
             </p>
           </div>
 
@@ -637,7 +637,7 @@ export default function App() {
           <div style={{ background: `linear-gradient(150deg,${C.navy},${C.navyMid})`, padding: "80px 6% 70px", borderBottom: `1px solid ${C.border}` }}>
             <Tag label="What We Trade" />
             <h1 style={{ fontSize: 48, fontWeight: 900, color: C.white, margin: "16px 0 14px" }}>Products</h1>
-            <p style={{ fontSize: 16, color: C.textDim, maxWidth: 520, lineHeight: 1.8 }}>Iron & Steel scrap in all major grades — sourced directly from Eastern India's leading industrial generators. Consistent monthly supply at industrial scale.</p>
+            <p style={{ fontSize: 16, color: C.textDim, maxWidth: 520, lineHeight: 1.8 }}>Metal scrap recycling in all major grades — sourced directly from Eastern India's leading industrial generators. Consistent monthly supply at industrial scale.</p>
           </div>
           <div style={{ padding: "70px 6%", background: C.navy }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 1, maxWidth: 1100, margin: "0 auto", border: `1px solid ${C.borderGold}`, borderRadius: 20, overflow: "hidden", background: C.borderGold }}>
@@ -674,9 +674,9 @@ export default function App() {
         <div style={{ paddingTop: 70 }}>
           <div style={{ background: `linear-gradient(150deg,${C.green},#1A3825)`, padding: "80px 6% 70px" }}>
             <Tag label="Environmental Impact" green />
-            <h1 style={{ fontSize: 48, fontWeight: 900, color: C.white, margin: "16px 0 20px" }}>Scrap Trading &<br />the Environment</h1>
+            <h1 style={{ fontSize: 48, fontWeight: 900, color: C.white, margin: "16px 0 20px" }}>Metal Recycling &<br />the Environment</h1>
             <p style={{ fontSize: 17, color: "rgba(255,255,255,0.6)", maxWidth: 600, lineHeight: 1.88 }}>
-              Recycling isn't just our business — it's our contribution to India's sustainable future. Every tonne of scrap we trade reduces mining, cuts emissions and conserves energy.
+              Recycling isn't just our business — it's our contribution to India's sustainable future. Every tonne of metal we recycle reduces mining, cuts emissions and conserves energy.
             </p>
           </div>
           <div style={{ background: C.green, padding: "0 6% 60px" }}>
