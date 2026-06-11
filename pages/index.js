@@ -855,7 +855,7 @@ export default function App() {
           <div style={{ color: C.muted, fontSize: 12, marginBottom: 2 }}>© 2025 · kregroup.co.in · Metal Scrap Recycler · Jamshedpur, Jharkhand</div>
           <div style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>GST: 20AAHFK1739R2Z1 · MSME: UDYAM-JH-06-0001117 · IEC: 2114001105</div>
           <div style={{ color: "rgba(255,255,255,0.1)", fontSize: 10, marginTop: 3 }}>metal scrap recycler Jamshedpur · iron steel scrap recycling Jharkhand · HMS scrap supplier · ferrous metal recycler Eastern India · sustainable steel scrap</div>
-          <div style={{ color: 'rgba(255,255,255,0.15)', fontSize: 10, marginTop: 8 }}>This site is powered by <span style={{ color: '#C9A84C', opacity: 0.5 }}>BizFlow</span></div>
+          <div style={{ color: 'rgba(255,255,255,0.15)', fontSize: 10, marginTop: 8 }}>This site is powered by <span style={{ color: '#C9A84C', opacity: 0.5 }}>dipOS</span></div>
         </div>
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
           {NAV.map(n => <button key={n} onClick={() => goTo(n)} style={{ background: "none", border: "none", color: C.muted, cursor: "pointer", fontSize: 13 }}>{n}</button>)}
